@@ -1,3 +1,12 @@
-# Issue trancker
+# Recipe Book
 
-Nothing yet...
+## Frontend
+
+- Angular
+
+
+## Backend
+
+- Node, Express
+- TypeORM
+
