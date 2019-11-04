@@ -1,0 +1,24 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "NodeJS/Express TypeScript Starter",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": ["http"],
+  "produces": ["application/json"],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": ["Greetings"],
+        "summary": "Greet the user",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

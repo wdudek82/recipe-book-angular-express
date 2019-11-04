@@ -1,0 +1,17 @@
+<h5>Recipes</h5>
+<div class="list-group">
+<!--  <a-->
+<!--    class="list-group-item list-group-item-action active text-white"-->
+<!--    style="cursor: pointer;"-->
+<!--  >-->
+<!--    Cras justo odio-->
+<!--  </a>-->
+  <a
+    *ngFor="let recipe of recipes"
+    class="list-group-item list-group-item-action d-flex justify-content-between"
+    style="cursor: pointer;"
+  >
+    <span class="align-self-center">{{recipe.name}}</span>
+    <img [src]="recipe.imgUrl" [alt]="recipe.name" style="height: 5rem;">
+  </a>
+</div>
