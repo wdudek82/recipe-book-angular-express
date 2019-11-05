@@ -1,4 +1,5 @@
 import {
+  AfterRemove,
   Column,
   CreateDateColumn,
   Entity,
@@ -8,6 +9,7 @@ import {
 } from "typeorm";
 import { Recipe } from "./Recipe";
 import { ShoppingList } from "./ShoppingList";
+import { IsEmail } from "class-validator";
 
 @Entity()
 export class User {
@@ -23,11 +25,21 @@ export class User {
   @Column()
   age!: number;
 
+  @Column({ length: 50 })
+  @IsEmail()
+  email!: string;
+
+  @Column({ nullable: true })
+  image!: string;
+
   @OneToMany(() => Recipe, (recipe) => recipe.author)
   recipes!: Recipe;
 
   @OneToMany(() => ShoppingList, (shoppingList) => shoppingList.user)
   shoppingLists!: ShoppingList[];
+
+  @Column()
+  password!: string;
 
   @CreateDateColumn()
   createdAt!: string;
@@ -37,4 +49,9 @@ export class User {
 
   @Column("timestamp", { nullable: true })
   deletedAt!: string;
+
+  @AfterRemove()
+  onUserDelete() {
+    this.deletedAt = new Date().toISOString();
+  }
 }

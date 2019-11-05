@@ -1,4 +1,5 @@
 import {
+  AfterRemove,
   Column,
   CreateDateColumn,
   Entity,
@@ -31,4 +32,9 @@ export class ShoppingList {
 
   @Column("timestamp", { nullable: true })
   deletedAt!: string;
+
+  @AfterRemove()
+  onShoppingListDelete() {
+    this.deletedAt = new Date().toISOString();
+  }
 }

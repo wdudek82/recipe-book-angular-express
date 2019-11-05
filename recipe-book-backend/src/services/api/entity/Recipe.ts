@@ -1,15 +1,14 @@
 import {
+  AfterRemove,
   Column,
   CreateDateColumn,
   Entity,
-  JoinTable,
-  ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Ingredient } from "./Ingredient";
 import { User } from "./User";
+import { RecipeIngredient } from "./RecipeIngredient";
 
 @Entity()
 export class Recipe {
@@ -25,9 +24,14 @@ export class Recipe {
   @Column("text", { nullable: true })
   description!: string;
 
-  @ManyToMany(() => Ingredient, (ingredient) => ingredient.recipes)
-  @JoinTable({ name: "recipe_ingredient" })
-  ingredients!: Ingredient[];
+  @OneToMany(
+    () => RecipeIngredient,
+    (recipeIngredient) => recipeIngredient.recipe,
+  )
+  recipeIngredients!: RecipeIngredient[];
+
+  @Column({ nullable: true })
+  image!: string;
 
   @CreateDateColumn()
   createdAt!: string;
@@ -37,4 +41,9 @@ export class Recipe {
 
   @Column("timestamp", { nullable: true })
   deletedAt!: string;
+
+  @AfterRemove()
+  onRecipeDelete() {
+    this.deletedAt = new Date().toISOString();
+  }
 }

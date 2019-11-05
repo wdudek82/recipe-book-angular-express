@@ -2,11 +2,12 @@
 
 ## Frontend
 
-- Angular
+- Angular 8
 
 
 ## Backend
 
+- TypeScript
 - Node, Express
 - TypeORM
 

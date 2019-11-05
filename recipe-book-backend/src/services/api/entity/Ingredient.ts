@@ -1,6 +1,6 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Recipe } from "./Recipe";
+import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ShoppingList } from "./ShoppingList";
+import { RecipeIngredient } from "./RecipeIngredient";
 
 @Entity()
 export class Ingredient {
@@ -10,11 +10,14 @@ export class Ingredient {
   @Column({ length: 50 })
   name!: string;
 
-  @Column()
-  amount!: number;
+  @Column({ nullable: true })
+  image!: string;
 
-  @ManyToMany(() => Recipe, (recipe) => recipe.ingredients)
-  recipes!: Recipe[];
+  @OneToMany(
+    () => RecipeIngredient,
+    (recipeIngredient) => recipeIngredient.ingredient,
+  )
+  recipeIngredients!: RecipeIngredient[];
 
   @ManyToMany(() => ShoppingList, (shoppingList) => shoppingList.ingredients)
   shoppingLists!: ShoppingList[];

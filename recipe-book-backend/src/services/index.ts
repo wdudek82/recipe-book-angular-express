@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Route } from "../util";
-// import { exampleRoutes } from "./example/routes";
+import { apiRoutes } from "./api/routes";
 
 // define a route handler for the default home page
 const rootRoute: Route = {
@@ -11,6 +11,6 @@ const rootRoute: Route = {
   },
 };
 
-const routes: Route[] = [rootRoute];
+const routes: Route[] = [rootRoute, ...apiRoutes];
 
 export default routes;
