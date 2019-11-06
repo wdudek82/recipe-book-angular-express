@@ -24,7 +24,7 @@ coverage
 .env
 
 # TypeORM - database configuration
-config/ormConfig.ts
+src/config/ormConfig.ts
 
 # Dependency directory
 node_modules

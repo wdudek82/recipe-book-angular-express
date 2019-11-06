@@ -7,12 +7,18 @@ export function getIngredients() {
 
 export function getRecipes() {
   return getRepository(Recipe).find({
-    relations: ["recipeIngredients"],
+    join: {
+      alias: "recipe",
+      leftJoinAndSelect: {
+        "recipeIngredients": "recipe.recipeIngredients",
+        "ingredients": "recipeIngredients.ingredient",
+      },
+    },
   });
 }
 
 export function getShoppingLists() {
   return getRepository(ShoppingList).find({
     relations: ["ingredients"],
-  })
+  });
 }

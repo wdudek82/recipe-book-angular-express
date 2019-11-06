@@ -69,6 +69,8 @@ export const apiRoutes: Route[] = [
     method: "get",
     handler: async (req: Request, res: Response) => {
       const ingredients = await getIngredients();
+      console.log(ingredients);
+
       res.status(200).json(ingredients);
     },
   },

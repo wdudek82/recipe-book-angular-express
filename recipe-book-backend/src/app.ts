@@ -7,7 +7,6 @@ import routes from "./services";
 import dotenv from "dotenv";
 import "reflect-metadata";
 import { ConnectionOptions, createConnection } from "typeorm";
-import { ormConfig } from "./config/ormConfig";
 
 function startServer() {
   dotenv.config();
@@ -27,8 +26,25 @@ function startServer() {
   });
 }
 
-// ORM config
-
+const ormConfig: ConnectionOptions = {
+  name: "default",
+  type: "postgres",
+  host: "localhost",
+  port: 5432,
+  username: "recipe_book",
+  password: "recipe_book",
+  database: "recipe_book",
+  synchronize: true,
+  logging: false,
+  entities: ["src/services/**/entity/**/*.ts"],
+  migrations: ["src/migration/**/*.ts"],
+  subscribers: ["src/subscriber/**/*.ts"],
+  cli: {
+    entitiesDir: "src/services/**/entity",
+    migrationsDir: "src/migration",
+    subscribersDir: "src/subscriber",
+  },
+};
 
 // create connection with database
 // note that it's not active database connection
