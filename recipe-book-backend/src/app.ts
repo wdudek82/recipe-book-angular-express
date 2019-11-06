@@ -6,7 +6,8 @@ import middleware from "./middleware";
 import routes from "./services";
 import dotenv from "dotenv";
 import "reflect-metadata";
-import { createConnection } from "typeorm";
+import { ConnectionOptions, createConnection } from "typeorm";
+import { ormConfig } from "./config/ormConfig";
 
 function startServer() {
   dotenv.config();
@@ -26,10 +27,13 @@ function startServer() {
   });
 }
 
+// ORM config
+
+
 // create connection with database
 // note that it's not active database connection
 // TypeORM creates connection pools and uses them for your requests
-createConnection()
+createConnection(ormConfig)
   .then(async () => {
     // eslint-disable-next-line no-console
     console.log("Updating DB tables...");
