@@ -10,8 +10,8 @@ export function getRecipes() {
     join: {
       alias: "recipe",
       leftJoinAndSelect: {
-        "recipeIngredients": "recipe.recipeIngredients",
-        "ingredients": "recipeIngredients.ingredient",
+        recipeIngredients: "recipe.recipeIngredients",
+        ingredients: "recipeIngredients.ingredient",
       },
     },
   });
