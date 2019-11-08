@@ -18,7 +18,7 @@ export class Recipe {
   @OneToMany(() => User, (user) => user.recipes)
   author!: User;
 
-  @Column({ length: 100 })
+  @Column({ length: 100, unique: true })
   name!: string;
 
   @Column("text", { nullable: true })
