@@ -10,7 +10,7 @@ import {
 import { User } from "./User";
 import { RecipeIngredient } from "./RecipeIngredient";
 
-@Entity()
+@Entity({ name: "recipes" })
 export class Recipe {
   @PrimaryGeneratedColumn()
   id!: number;

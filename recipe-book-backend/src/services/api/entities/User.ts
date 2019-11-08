@@ -11,7 +11,7 @@ import { Recipe } from "./Recipe";
 import { ShoppingList } from "./ShoppingList";
 import { IsEmail } from "class-validator";
 
-@Entity()
+@Entity({ name: "users" })
 export class User {
   @PrimaryGeneratedColumn()
   id!: number;

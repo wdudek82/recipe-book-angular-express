@@ -1,5 +1,5 @@
 import { getRepository } from "typeorm";
-import { Ingredient, Recipe, ShoppingList } from "./entity";
+import { Ingredient, Recipe, ShoppingList } from "./entities";
 
 export function getIngredients() {
   return getRepository(Ingredient).find();

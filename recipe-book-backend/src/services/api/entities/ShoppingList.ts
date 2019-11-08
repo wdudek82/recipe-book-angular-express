@@ -12,7 +12,7 @@ import {
 import { User } from "./User";
 import { Ingredient } from "./Ingredient";
 
-@Entity()
+@Entity({ name: "shopping_lists" })
 export class ShoppingList {
   @PrimaryGeneratedColumn()
   id!: number;

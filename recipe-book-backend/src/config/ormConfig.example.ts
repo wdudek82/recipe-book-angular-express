@@ -8,7 +8,7 @@ export const ormConfig: ConnectionOptions = {
   username: "",
   password: "",
   database: "",
-  synchronize: true,
+  synchronize: false,
   logging: false,
   entities: ["../services/**/entity/**/*.ts"],
   migrations: ["../migration/**/*.ts"],

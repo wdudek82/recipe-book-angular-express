@@ -12,6 +12,7 @@
     "start:prod": "node dist/app.js",
     "dev:start": "npm-run-all build start",
     "build": "npm-run-all clean lint tsc -p .",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -f src/config/ormConfig.ts",
     "test": "jest --forceExit --coverage --verbose"
   },
   "keywords": [],

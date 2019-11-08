@@ -7,7 +7,7 @@ import routes from "./services";
 import dotenv from "dotenv";
 import "reflect-metadata";
 import { createConnection } from "typeorm";
-import { ormConfig } from "./config/ormConfig";
+const ormConfig = require("./config/ormConfig");
 
 function startServer() {
   dotenv.config();

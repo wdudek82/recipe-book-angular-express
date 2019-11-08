@@ -3,7 +3,7 @@ import { Recipe } from "./Recipe";
 import { Ingredient } from "./Ingredient";
 import { Min } from "class-validator";
 
-@Entity()
+@Entity({ name: "recipes_ingredients" })
 export class RecipeIngredient {
   @PrimaryGeneratedColumn()
   id!: number;
