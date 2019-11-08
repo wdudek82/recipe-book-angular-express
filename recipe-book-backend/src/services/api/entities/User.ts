@@ -25,7 +25,7 @@ export class User {
   @Column()
   age!: number;
 
-  @Column({ length: 50, nullable: true })
+  @Column({ length: 50, nullable: true, unique: true })
   @IsEmail()
   email!: string;
 
