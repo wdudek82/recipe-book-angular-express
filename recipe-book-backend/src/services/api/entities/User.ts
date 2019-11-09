@@ -38,7 +38,8 @@ export class User {
   @OneToMany(() => ShoppingList, (shoppingList) => shoppingList.user)
   shoppingLists!: ShoppingList[];
 
-  @Column()
+  // TODO: at some point has to be changed to nullable = false
+  @Column({ nullable: true })
   password!: string;
 
   @CreateDateColumn()

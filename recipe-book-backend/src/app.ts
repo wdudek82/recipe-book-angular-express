@@ -7,7 +7,6 @@ import routes from "./services";
 import dotenv from "dotenv";
 import "reflect-metadata";
 import { createConnection } from "typeorm";
-import { populateDb } from "./util/populateDB";
 
 const ormConfig = require("./config/ormConfig");
 
@@ -33,14 +32,13 @@ function startServer() {
 // note that it's not active database connection
 // TypeORM creates connection pools and uses them for your requests
 createConnection(ormConfig)
-  .then(async () => {
-    // eslint-disable-next-line no-console
-    console.log("Prepopulate DB...");
-    populateDb();
-
+  .then(() => {
     // eslint-disable-next-line no-console
     console.log("Updating DB tables...");
 
     startServer();
   })
-  .catch((error) => console.log("TypeORM connection error:", error));
+  .catch((error) => {
+    // eslint-disable-next-line no-console
+    console.log("TypeORM connection error:", error)
+  });

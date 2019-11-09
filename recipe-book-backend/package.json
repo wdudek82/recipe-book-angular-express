@@ -4,6 +4,7 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
+    "populate": "ts-node src/util/populateDb.ts",
     "clean": "rimraf dist/*",
     "tsc": "tsc",
     "lint": "eslint --config .eslintrc.js --ext .js,.ts src/",

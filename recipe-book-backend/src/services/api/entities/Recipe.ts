@@ -2,20 +2,18 @@ import {
   AfterRemove,
   Column,
   CreateDateColumn,
-  Entity,
-  OneToMany,
+  Entity, ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { User } from "./User";
-import { RecipeIngredient } from "./RecipeIngredient";
 
 @Entity({ name: "recipes" })
 export class Recipe {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @OneToMany(() => User, (user) => user.recipes)
+  @ManyToOne(() => User, (user) => user.recipes)
   author!: User;
 
   @Column({ length: 100, unique: true })
@@ -23,12 +21,6 @@ export class Recipe {
 
   @Column("text", { nullable: true })
   description!: string;
-
-  @OneToMany(
-    () => RecipeIngredient,
-    (recipeIngredient) => recipeIngredient.recipe,
-  )
-  recipeIngredients!: RecipeIngredient[];
 
   @Column({ nullable: true })
   image!: string;

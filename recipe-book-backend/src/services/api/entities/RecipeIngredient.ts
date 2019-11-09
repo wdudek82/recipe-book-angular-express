@@ -8,11 +8,11 @@ export class RecipeIngredient {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @ManyToOne(() => Recipe, (recipe) => recipe.recipeIngredients)
-  recipe!: Recipe;
+  @ManyToOne(() => Recipe, (recipe) => recipe.id)
+  recipe!: number;
 
-  @ManyToOne(() => Ingredient, (ingredient) => ingredient.recipeIngredients)
-  ingredient!: Ingredient;
+  @ManyToOne(() => Ingredient, (ingredient) => ingredient.id)
+  ingredient!: number;
 
   @Column({ type: "integer"})
   @Min(0)

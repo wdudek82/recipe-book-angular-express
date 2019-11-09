@@ -24,7 +24,7 @@ export class ShoppingList {
   @JoinTable({ name: "shopping_list_ingredient" })
   ingredients!: Ingredient[];
 
-  // TODO: add new entity for intermediate table shoppinglist_ingredient
+  // TODO: add new entity for intermediate table shopping_lists_ingredients
   // with additional column "amount" that will store information
   // on number of ingredients of each type was added to the list
 
