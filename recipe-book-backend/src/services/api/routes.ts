@@ -1,25 +1,29 @@
 import { Route } from "../../util";
 import { Request, Response } from "express";
-import { getIngredients, getRecipes, getShoppingLists } from "./controllers";
+import {
+  getIngredients,
+  getRecipes,
+  getShoppingLists,
+  getUserById,
+  getUsers,
+} from "./controllers";
 
 export const apiRoutes: Route[] = [
   {
     path: "/api/users",
     method: "get",
     handler: async (req: Request, res: Response) => {
-      res
-        .status(200)
-        .json({ message: "Route not implemented yet.", route: "/api/users" });
+      const users = await getUsers();
+      res.status(200).json(users);
     },
   },
   {
     path: "/api/users/:id",
     method: "get",
     handler: async (req: Request, res: Response) => {
-      res.status(200).json({
-        message: "Route not implemented yet.",
-        route: "/api/users/:id",
-      });
+      const id = parseInt(req.params.id, 10);
+      const user = await getUserById(id);
+      res.status(200).json(user);
     },
   },
   {
@@ -47,21 +51,17 @@ export const apiRoutes: Route[] = [
     method: "get",
     handler: async (req: Request, res: Response) => {
       const recipes = await getRecipes();
-      res
-        .status(200)
-        .json(recipes);
+      res.status(200).json(recipes);
     },
   },
   {
     path: "/api/recipes/:id/ingredients",
     method: "get",
     handler: async (req: Request, res: Response) => {
-      res
-        .status(200)
-        .json({
-          message: "Route not implemented yet.",
-          route: "/api/recipes/:id/ingredients",
-        });
+      res.status(200).json({
+        message: "Route not implemented yet.",
+        route: "/api/recipes/:id/ingredients",
+      });
     },
   },
   {

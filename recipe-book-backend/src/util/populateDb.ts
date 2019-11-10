@@ -18,6 +18,7 @@ interface IUser {
 interface IRecipe {
   name: string;
   description?: string;
+  authorId: number;
   ingredients: {
     name: string;
     amount: number;
@@ -85,6 +86,7 @@ async function createRecipes() {
     {
       name: "Schnitzel",
       description: "A huge and tasty schnitzel with fries.",
+      authorId: 1,
       ingredients: [
         { name: "meat", amount: 1 },
         { name: "fries", amount: 25 },
@@ -94,11 +96,13 @@ async function createRecipes() {
     {
       name: "Fries",
       description: "Fries with salt - we all love them!",
+      authorId: 1,
       ingredients: [{ name: "fries", amount: 100 }],
     },
     {
       name: "Pizza",
       description: "Traditional Italian pizza.",
+      authorId: 2,
       ingredients: [
         { name: "base", amount: 1 },
         { name: "tomato", amount: 5 },
@@ -109,8 +113,10 @@ async function createRecipes() {
   ];
 
   const recipeRepository = getRepository(Recipe);
-  for (const { name, description, ingredients } of dummyRecipes) {
-    let recipe = await recipeRepository.create({ name, description });
+  for (const { name, description, authorId, ingredients } of dummyRecipes) {
+    let userRepository = await getRepository(User);
+    let author = await userRepository.findOne({ id: authorId });
+    let recipe = await recipeRepository.create({ name, description, author });
     await recipeRepository.save(recipe);
 
     // create ingredients

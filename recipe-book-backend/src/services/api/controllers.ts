@@ -1,5 +1,24 @@
 import { getRepository } from "typeorm";
-import { Ingredient, Recipe, ShoppingList } from "../../entities";
+import { Ingredient, Recipe, ShoppingList, User } from "../../entities";
+
+export function getUsers() {
+  return getRepository(User).find({
+    relations: ["recipes", "shoppingLists"],
+  });
+}
+
+export async function getUserById(id: number) {
+  console.log("get user by id:", id);
+  const user = await getRepository(User).findOne(
+    { id },
+    { relations: ["recipes", "shoppingLists"] },
+  );
+
+  if (!user) {
+    return {};
+  }
+  return user;
+}
 
 export function getIngredients() {
   return getRepository(Ingredient).find();
