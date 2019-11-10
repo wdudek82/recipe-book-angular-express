@@ -1,7 +1,7 @@
 import { Route } from "../../util";
 import { Request, Response } from "express";
 import {
-  getIngredients,
+  getIngredients, getRecipeById,
   getRecipes,
   getShoppingLists,
   getUserById,
@@ -52,6 +52,15 @@ export const apiRoutes: Route[] = [
     handler: async (req: Request, res: Response) => {
       const recipes = await getRecipes();
       res.status(200).json(recipes);
+    },
+  },
+  {
+    path: "/api/recipes/:id",
+    method: "get",
+    handler: async (req: Request, res: Response) => {
+      const id = parseInt(req.params.id, 10);
+      const recipe = await getRecipeById(id);
+      res.status(200).json(recipe);
     },
   },
   {

@@ -2,7 +2,10 @@ import {
   AfterRemove,
   Column,
   CreateDateColumn,
-  Entity, ManyToOne, OneToMany,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -14,7 +17,11 @@ export class Recipe {
   @PrimaryGeneratedColumn()
   id!: number;
 
+  @Column({ type: "integer", nullable: true })
+  authorId!: number;
+
   @ManyToOne(() => User, (user) => user.recipes)
+  @JoinColumn({ name: "authorId" })
   author!: User;
 
   @Column({ length: 100, unique: true })
@@ -26,7 +33,10 @@ export class Recipe {
   @Column({ nullable: true })
   image!: string;
 
-  @OneToMany(() => RecipeIngredient, (recipeIngredient) => recipeIngredient.recipe)
+  @OneToMany(
+    () => RecipeIngredient,
+    (recipeIngredient) => recipeIngredient.recipe,
+  )
   recipeIngredients!: RecipeIngredient[];
 
   @CreateDateColumn()

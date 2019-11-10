@@ -35,6 +35,10 @@ export class User {
   @OneToMany(() => Recipe, (recipe) => recipe.author)
   recipes!: Recipe[];
 
+  // To show only recipe ids
+  // @RelationId((self: User) => self.recipes)
+  // recipeIds!: number[];
+
   @OneToMany(() => ShoppingList, (shoppingList) => shoppingList.user)
   shoppingLists!: ShoppingList[];
 

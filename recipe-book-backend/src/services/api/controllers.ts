@@ -8,7 +8,6 @@ export function getUsers() {
 }
 
 export async function getUserById(id: number) {
-  console.log("get user by id:", id);
   const user = await getRepository(User).findOne(
     { id },
     { relations: ["recipes", "shoppingLists"] },
@@ -34,6 +33,27 @@ export function getRecipes() {
       },
     },
   });
+}
+
+export async function getRecipeById(id: number) {
+  const recipeRepository = getRepository(Recipe);
+  const recipe = await recipeRepository.findOne(
+    { id },
+    {
+      // relations: ["recipeIngredients"],
+      join: {
+        alias: "recipe",
+        leftJoinAndSelect: {
+          recipeIngredients: "recipe.recipeIngredients",
+          ingredients: "recipeIngredients.ingredient",
+        },
+      },
+    },
+  );
+  if (!recipe) {
+    return {};
+  }
+  return recipe;
 }
 
 export function getShoppingLists() {

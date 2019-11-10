@@ -2,7 +2,7 @@ import {
   AfterRemove,
   Column,
   CreateDateColumn,
-  Entity,
+  Entity, JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -16,7 +16,11 @@ export class ShoppingList {
   @PrimaryGeneratedColumn()
   id!: number;
 
+  @Column({ type: "integer" })
+  userId!: number;
+
   @ManyToOne(() => User, (user) => user.shoppingLists)
+  @JoinColumn({ name: "userId" })
   user!: User;
 
   @OneToMany(
