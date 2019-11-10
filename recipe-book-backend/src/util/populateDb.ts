@@ -2,10 +2,10 @@ import { Connection, createConnection, getRepository } from "typeorm";
 import {
   Ingredient,
   Recipe,
+  RecipeIngredient,
   ShoppingList,
   User,
-} from "../services/api/entities";
-import { RecipeIngredient } from "../services/api/entities/RecipeIngredient";
+} from "../entities";
 
 const ormConfig = require("../config/ormConfig");
 
@@ -55,8 +55,8 @@ async function createIngredient(name: string): Promise<Ingredient> {
 }
 
 async function createRecipeIngredient(
-  recipe: number,
-  ingredient: number,
+  recipe: Recipe,
+  ingredient: Ingredient,
   amount: number,
 ) {
   const recipeIngredientRepository = getRepository(RecipeIngredient);
@@ -118,7 +118,7 @@ async function createRecipes() {
       let ingredient = await createIngredient(name);
 
       // create recipe-ingredient relation containing amount
-      await createRecipeIngredient(recipe.id, ingredient.id, amount);
+      await createRecipeIngredient(recipe, ingredient, amount);
     }
   }
 }
