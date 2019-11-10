@@ -7,8 +7,6 @@ import {
 } from "../services/api/entities";
 import { RecipeIngredient } from "../services/api/entities/RecipeIngredient";
 
-const ormConfig = require("../config/ormConfig");
-
 interface IUser {
   firstName: string;
   lastName: string;
@@ -131,7 +129,7 @@ export async function populateDb() {
   console.log("All data has been imported!");
 }
 
-createConnection(ormConfig)
+createConnection()
   .then(async (connection: Connection) => {
     await connection.dropDatabase();
     await connection.runMigrations();

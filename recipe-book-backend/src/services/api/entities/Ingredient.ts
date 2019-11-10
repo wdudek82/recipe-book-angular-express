@@ -1,5 +1,5 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { ShoppingList } from "./ShoppingList";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { ShoppingListIngredient } from "./ShoppingListIngredient";
 
 @Entity({ name: "ingredients" })
 export class Ingredient {
@@ -12,6 +12,9 @@ export class Ingredient {
   @Column({ nullable: true })
   image!: string;
 
-  @ManyToMany(() => ShoppingList, (shoppingList) => shoppingList.ingredients)
-  shoppingLists!: ShoppingList[];
+  @OneToMany(
+    () => ShoppingListIngredient,
+    (shoppingListIngredient) => shoppingListIngredient.ingredient,
+  )
+  shoppingListIngredient!: number;
 }

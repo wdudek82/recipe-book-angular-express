@@ -8,8 +8,6 @@ import dotenv from "dotenv";
 import "reflect-metadata";
 import { createConnection } from "typeorm";
 
-const ormConfig = require("./config/ormConfig");
-
 function startServer() {
   dotenv.config();
 
@@ -31,7 +29,7 @@ function startServer() {
 // create connection with database
 // note that it's not active database connection
 // TypeORM creates connection pools and uses them for your requests
-createConnection(ormConfig)
+createConnection()
   .then(() => {
     // eslint-disable-next-line no-console
     console.log("Updating DB tables...");

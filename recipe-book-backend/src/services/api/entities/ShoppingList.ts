@@ -3,14 +3,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinTable,
-  ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { User } from "./User";
-import { Ingredient } from "./Ingredient";
+import { ShoppingListIngredient } from "./ShoppingListIngredient";
 
 @Entity({ name: "shopping_lists" })
 export class ShoppingList {
@@ -20,13 +19,15 @@ export class ShoppingList {
   @ManyToOne(() => User, (user) => user.shoppingLists)
   user!: User;
 
-  @ManyToMany(() => Ingredient, (ingredient) => ingredient.shoppingLists)
-  @JoinTable({ name: "shopping_list_ingredient" })
-  ingredients!: Ingredient[];
-
   // TODO: add new entity for intermediate table shopping_lists_ingredients
   // with additional column "amount" that will store information
   // on number of ingredients of each type was added to the list
+
+  @OneToMany(
+    () => ShoppingListIngredient,
+    (shoppingListIngredient) => shoppingListIngredient.shoppingList,
+  )
+  shoppingListIngredient!: number;
 
   @CreateDateColumn()
   createdAt!: string;
