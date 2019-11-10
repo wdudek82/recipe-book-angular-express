@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
 import { Route } from "../util";
-import { apiRoutes } from "./api/routes";
+import { userRoutes } from "./user/routes";
+import { recipeRoutes } from "./recipe/routes";
+import { shoppingListRoutes } from "./shopping-list/routes";
+import { ingredientRoutes } from "./ingredient/routes";
 
 // define a route handler for the default home page
 const rootRoute: Route = {
@@ -11,6 +14,12 @@ const rootRoute: Route = {
   },
 };
 
-const routes: Route[] = [rootRoute, ...apiRoutes];
+const routes: Route[] = [
+  rootRoute,
+  ...userRoutes,
+  ...recipeRoutes,
+  ...shoppingListRoutes,
+  ...ingredientRoutes,
+];
 
 export default routes;

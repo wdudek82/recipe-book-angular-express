@@ -17,7 +17,7 @@ export class Recipe {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ type: "integer", nullable: true })
+  @Column({ type: "integer" })
   authorId!: number;
 
   @ManyToOne(() => User, (user) => user.recipes)

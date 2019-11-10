@@ -4,7 +4,7 @@ import {
   CreateDateColumn,
   Entity,
   OneToMany,
-  PrimaryGeneratedColumn,
+  PrimaryGeneratedColumn, RelationId,
   UpdateDateColumn,
 } from "typeorm";
 import { Recipe } from "./Recipe";
@@ -41,6 +41,9 @@ export class User {
 
   @OneToMany(() => ShoppingList, (shoppingList) => shoppingList.user)
   shoppingLists!: ShoppingList[];
+
+  @RelationId((self: User) => self.shoppingLists)
+  shoppingListIds!: number[];
 
   // TODO: at some point has to be changed to nullable = false
   @Column({ nullable: true })
