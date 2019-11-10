@@ -14,11 +14,11 @@ export class Ingredient {
   image!: string;
 
   @OneToMany(() => RecipeIngredient, (recipeIngredient) => recipeIngredient.ingredient)
-  recipeIngredient!: number;
+  recipeIngredients!: RecipeIngredient[];
 
   @OneToMany(
     () => ShoppingListIngredient,
     (shoppingListIngredient) => shoppingListIngredient.ingredient,
   )
-  shoppingListIngredient!: number;
+  shoppingListIngredient!: ShoppingListIngredient[];
 }

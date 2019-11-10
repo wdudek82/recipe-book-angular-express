@@ -27,7 +27,7 @@ export class Recipe {
   image!: string;
 
   @OneToMany(() => RecipeIngredient, (recipeIngredient) => recipeIngredient.recipe)
-  recipeIngredient!: number;
+  recipeIngredients!: RecipeIngredient[];
 
   @CreateDateColumn()
   createdAt!: string;

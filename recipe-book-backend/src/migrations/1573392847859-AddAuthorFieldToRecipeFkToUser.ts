@@ -1,7 +1,7 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class RecipeIsManyToOneToAuthor1573333961890 implements MigrationInterface {
-    name = "RecipeIsManyToOneToAuthor1573333961890";
+export class AddAuthorFieldToRecipeFkToUser1573392847859 implements MigrationInterface {
+    name = 'AddAuthorFieldToRecipeFkToUser1573392847859'
 
     public async up(queryRunner: QueryRunner): Promise<any> {
         await queryRunner.query(`ALTER TABLE "recipes" ADD "authorId" integer`, undefined);

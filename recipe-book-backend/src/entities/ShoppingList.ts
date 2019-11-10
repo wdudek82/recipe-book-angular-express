@@ -24,8 +24,8 @@ export class ShoppingList {
   // on number of ingredients of each type was added to the list
 
   @OneToMany(
-    () => ShoppingList,
-    (shoppingList) => shoppingList.user,
+    () => ShoppingListIngredient,
+    (shoppingListIngredient) => shoppingListIngredient.shoppingList,
   )
   shoppingListIngredient!: ShoppingListIngredient[];
 
