@@ -19,10 +19,6 @@ export class ShoppingList {
   @ManyToOne(() => User, (user) => user.shoppingLists)
   user!: User;
 
-  // TODO: add new entity for intermediate table shopping_lists_ingredients
-  // with additional column "amount" that will store information
-  // on number of ingredients of each type was added to the list
-
   @OneToMany(
     () => ShoppingListIngredient,
     (shoppingListIngredient) => shoppingListIngredient.shoppingList,

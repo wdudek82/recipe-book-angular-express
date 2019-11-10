@@ -10,11 +10,11 @@ export class ShoppingListIngredient {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @ManyToOne(() => ShoppingList, (shoppingList) => shoppingList.shoppingListIngredient)
+  @ManyToOne(() => ShoppingList, (shoppingList) => shoppingList.id)
   shoppingList!: ShoppingList;
 
   @ManyToOne(() => Ingredient, (ingredient) => ingredient.id)
-  ingredient!: number;
+  ingredient!: Ingredient;
 
   @Column({ type: "integer" })
   @Min(0)
