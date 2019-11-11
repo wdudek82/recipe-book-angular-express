@@ -7,8 +7,21 @@ import routes from "./services";
 import dotenv from "dotenv";
 import "reflect-metadata";
 import { createConnection } from "typeorm";
+import errorHandlers from "./middleware/errorHandlers";
 
 const ormConfig = require("./config/ormConfig");
+
+process.on("uncaughtException", (e) => {
+  // TODO: replace with a logger instance
+  console.log(e);
+  process.exit(1);
+});
+
+process.on("unhandledRejection", (e) => {
+  console.log(e);
+  process.exit(1);
+});
+
 
 function startServer() {
   dotenv.config();
@@ -19,6 +32,7 @@ function startServer() {
 
   applyMiddleware(middleware, app);
   applyRoutes(routes, app);
+  applyMiddleware(errorHandlers, app);
 
   const server: Server = http.createServer(app);
 
