@@ -1,7 +1,7 @@
 import {
   handleCors,
   handleBodyRequestParsing,
-  handleCompression,
+  handleCompression, serveStaticContent,
 } from "./common";
 import { handleApiDocs } from "./apiDocs";
 
@@ -10,4 +10,5 @@ export default [
   handleBodyRequestParsing,
   handleCompression,
   handleApiDocs,
+  serveStaticContent,
 ];

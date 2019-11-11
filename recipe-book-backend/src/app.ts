@@ -30,9 +30,12 @@ function startServer() {
 
   const app: Express = express();
 
+  // serve static content
+  // app.use(express.static("public"));
+
   applyMiddleware(middleware, app);
   applyRoutes(routes, app);
-  applyMiddleware(errorHandlers, app);
+  // applyMiddleware(errorHandlers, app);
 
   const server: Server = http.createServer(app);
 

@@ -8,16 +8,9 @@ function handle404Error(router: Router) {
 }
 
 function handleClientErrors(router: Router) {
-  router.use(
-    (
-      err: ErrorHandler.ResponseError,
-      req: Request,
-      res: Response,
-      next: NextFunction,
-    ) => {
-      ErrorHandler.clientError(err, res, next);
-    },
-  );
+  router.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    ErrorHandler.clientError(err, res, next);
+  });
 }
 
 function handleServerErrors(router: Router) {

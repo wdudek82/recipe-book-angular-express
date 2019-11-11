@@ -1,18 +1,14 @@
 import { HTTP404Error, HTTPClientError } from "./httpErrors";
 import { NextFunction, Response } from "express";
 
-export interface ResponseError extends Error {
-  status: number;
-}
-
 export function notFoundError() {
   throw new HTTP404Error("Method not found.");
 }
 
-export function clientError(err: ResponseError, res: Response, next: NextFunction) {
+export function clientError(err: Error, res: Response, next: NextFunction) {
   if (err instanceof HTTPClientError) {
     console.log(err);
-    res.status(err.status).send(err.message);
+    res.status(err.statusCode).send(err.message);
   } else {
     next(err);
   }
