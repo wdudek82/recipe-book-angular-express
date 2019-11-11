@@ -9,24 +9,26 @@ import {
 
 const ormConfig = require("../config/ormConfig");
 
-interface IUser {
+interface UserDto {
   firstName: string;
   lastName: string;
   age: number;
 }
 
-interface IRecipe {
+interface RecipeIngredientDto {
+  name: string;
+  amount: number;
+}
+
+interface RecipeDto {
   name: string;
   description?: string;
   authorId: number;
-  ingredients: {
-    name: string;
-    amount: number;
-  };
+  ingredients: RecipeIngredientDto[];
 }
 
 async function createUsers() {
-  const dummyUsers: IUser[] = [
+  const dummyUsers: UserDto[] = [
     { firstName: "John", lastName: "Doe", age: 44 },
     { firstName: "Jane", lastName: "Doe", age: 34 },
     { firstName: "Aria", lastName: "Stark", age: 21 },
@@ -82,7 +84,7 @@ async function createRecipeIngredient(
 }
 
 async function createRecipes() {
-  const dummyRecipes = [
+  const dummyRecipes: RecipeDto[] = [
     {
       name: "Schnitzel",
       description: "A huge and tasty schnitzel with fries.",

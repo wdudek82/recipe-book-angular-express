@@ -1,22 +1,121 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "NodeJS/Express TypeScript Starter",
-    "version": "1.0.0"
+    "title": "Recipe Book",
+    "version": "1.0.0",
+    "termsOfService": "http://recipe-book.xyz/tems/",
+    "contact": {
+      "email": "recipebook@testing.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
   },
   "host": "localhost:8080",
   "basePath": "/",
   "schemes": ["http"],
   "produces": ["application/json"],
+  "tags": [
+    {
+      "name": "user",
+      "description": "Recipe Book users."
+    },
+    {
+      "name": "recipe",
+      "description": "Recipe Book users."
+    },
+    {
+      "name": "ingredient",
+      "description": "Recipe Book users."
+    },
+    {
+      "name": "shopping lists",
+      "description": "Recipe Book users."
+    }
+  ],
   "paths": {
     "/": {
       "get": {
-        "tags": ["Greetings"],
+        "tags": ["greetings"],
         "summary": "Greet the user",
         "responses": {
           "200": {
             "description": "OK"
           }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": ["user"],
+        "summary": "Returns list of all users",
+        "description": "Returns list of all users.",
+        "operationId": "getUsers",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Recipe": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Ingredient": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "ShoppingList": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
         }
       }
     }
